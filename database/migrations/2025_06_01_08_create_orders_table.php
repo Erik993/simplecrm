@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('client_id');
-            $table->unsignedBigInteger('order_status_id');
+            $table->unsignedBigInteger('client_id'); // add default NULL?
+            $table->unsignedBigInteger('order_status_id'); // add default NULL?
+
 
             $table->string('title');
             $table->string('description')->nullable();
             $table->decimal('amount', 10, 2)->default('0');
             $table->dateTime('finished_at')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
 
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('order_status_id')->references('id')->on('order_statuses')->onDelete('cascade');

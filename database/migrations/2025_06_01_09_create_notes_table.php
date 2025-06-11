@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('content');
             $table->timestamps();
 
+            $table->softDeletes();
+
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });

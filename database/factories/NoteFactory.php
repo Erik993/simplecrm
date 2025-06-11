@@ -32,7 +32,7 @@ class NoteFactory extends Factory
         return [
             'client_id' => fake()->randomElement($clientIds),
             'order_id' => fake()->randomElement($orderIds),
-            'content' => fake()-> paragraph(),
+            'content' => fake()-> paragraph(1),
         ];
     }
 }

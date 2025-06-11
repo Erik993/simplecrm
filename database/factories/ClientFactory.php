@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\ClientStatus;
-use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,11 +18,11 @@ class ClientFactory extends Factory
      */
     public function definition(): array
     {
-        static $employeeIds = null;
+        static $userIds = null;
         static $statusIds = null;
 
-        if ($employeeIds === null) {
-            $employeeIds = Employee::pluck('id')->all(); // SELECT id FROM employees
+        if ($userIds === null) {
+            $userIds = User::pluck('id')->all(); // SELECT id FROM employees
         }
 
         if ($statusIds === null) {
@@ -30,7 +30,7 @@ class ClientFactory extends Factory
         }
 
         return [
-            'employee_id' => fake()->randomElement($employeeIds),
+            'user_id' => fake()->randomElement($userIds),
             'client_status_id' => fake()->randomElement($statusIds),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),

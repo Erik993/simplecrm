@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Client;
-use App\Models\Employee;
 use App\Models\Order;
 use App\Models\TaskStatus;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +22,7 @@ class TaskFactory extends Factory
     {
         static $clientIds = null;
         static $orderIds = null;
-        static $employeeIds = null;
+        static $userIds = null;
         static $taskStatusIds = null;
 
         if($clientIds == null){
@@ -33,8 +33,8 @@ class TaskFactory extends Factory
             $orderIds = Order::pluck('id')->all();
         }
 
-        if($employeeIds == null){
-            $employeeIds = Employee::pluck('id')->all();
+        if($userIds == null){
+            $userIds = User::pluck('id')->all();
         }
 
         if($taskStatusIds == null){
@@ -44,10 +44,10 @@ class TaskFactory extends Factory
         return [
             'client_id' => fake()->randomElement($clientIds),
             'order_id' => fake()->randomElement($orderIds),
-            'employee_id' => fake()->randomElement($employeeIds),
+            'user_id' => fake()->randomElement($userIds),
             'task_status_id' => fake()->randomElement($taskStatusIds),
             'title' => fake()->sentence(3),
-            'description' => fake()->optional()->paragraph(),
+            'description' => fake()->optional()->paragraph(1),
             'due_date' => fake()->dateTimeBetween('now', '+1 month'),
         ];
     }

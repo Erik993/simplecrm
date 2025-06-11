@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -12,6 +13,7 @@ class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -47,8 +50,18 @@ class User extends Authenticatable
         ];
     }
 
-    public function employees()
-    {
-        return $this->hasMany(Employee::class, 'user_id', 'id');
+
+    public function isAdmin() {
+        return $this->role === 'admin';
     }
+
+    public function isHead() {
+        return $this->role === 'head';
+    }
+
+    public function isManager() {
+        return $this->role === 'manager';
+    }
+
+
 }

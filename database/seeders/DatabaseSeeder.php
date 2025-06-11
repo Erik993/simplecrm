@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Client;
-use App\Models\Employee;
 use App\Models\Note;
 use App\Models\Order;
 use App\Models\Task;
@@ -34,15 +33,16 @@ class DatabaseSeeder extends Seeder
         ]);
 */
 
-
+/*
         //user count should be = employee count
         User::factory(5)->create()->each(function ($user) {
-            Employee::factory()->fromUser($user)->create();
-        });
+            //Employee::factory()->fromUser($user)->create();
+        });*/
 
+        User::factory(5)->create();
         Client::factory(10)->create();
-        Order::factory(20)->create();
-        Task::factory(30)->create();
+        Order::factory(100)->create();
+        Task::factory(100)->create();
         Note::factory(40)->create();
     }
 }

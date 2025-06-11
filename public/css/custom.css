@@ -1,0 +1,18 @@
+/* public/css/custom.css */
+.sidebar-link, .nav-hover {
+    transition: all 0.2s ease-in-out;
+}
+.sidebar-link:hover, .nav-hover:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    border-radius: 5px;
+}
+
+.note-hover {
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.note-hover:hover {
+    transform: scale(1.02);
+    background-color: #f8f9fa;
+}

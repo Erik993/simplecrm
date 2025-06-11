@@ -33,7 +33,7 @@ class OrderFactory extends Factory
             'client_id' => fake()->randomElement($clientIds),
             'order_status_id' => fake()->randomElement($orderStatusIds),
             'title' => fake()->sentence(3),
-            'description' => fake()->optional()->paragraph(),
+            'description' => fake()->optional()->paragraph(1),
             'amount' => fake()->randomFloat(2, 50, 1000),
             'finished_at' => fake()->optional()->dateTimeBetween('-1 month', '+1 month'),
         ];
