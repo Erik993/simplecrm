@@ -53,6 +53,19 @@
                         <input type="text" name="phone" class="form-control" id="phoneNumber"
                                placeholder="+371-256-845-88" value="{{ old('phone')}}">
                     </div>
+
+                    <div class="form-group mb-3">
+                        <label for="user_id">Assign to User</label>
+                        <select name="user_id" id="user_id" class="form-control" required>
+                            <option value="">Select a user</option>
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }} ({{ $user->email }})</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+
+
                     <button type="submit" class="btn btn-primary">Create</button>
                 </form>
             </div>

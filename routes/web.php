@@ -16,12 +16,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotificationController;
 
 
-
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-//Route::get('/notify-heads', [NotificationController::class, 'notifyHeads'])->middleware('auth')->name('notify.heads');
 
 ////////////////////////////// auth
 // Auth routes for guests only
@@ -43,8 +41,10 @@ Route::middleware(['auth', SetLocale::class])->group(function () {
 
     Route::get('lang/{locale}', [LocalizationController::class, 'switch'])->name('lang.switch');
 
+    ///"My" filter in sidebar
+    Route::get('/my-clients', [ClientController::class, 'myClients'])->name('clients.my');
 
-    ////////only accessible is user role is admin
+    ////////only accessible if user role is admin
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
@@ -53,7 +53,7 @@ Route::middleware(['auth', SetLocale::class])->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     ///////////////////////////////
 
-    //clients
+    ////clients
     Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
     Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
     Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');

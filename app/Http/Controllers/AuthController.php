@@ -33,7 +33,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'admin', // default role
+            'role' => 'admin', // default
         ]);
 
         Auth::login($user);
@@ -51,9 +51,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/clients'); // or job listing index
+            return redirect()->intended('/clients'); //default page
         } else {
-            return back()->with('error', 'Invalid credentials.');
+            return back()->with('error', 'Invalid login or password');
         }
     }
 

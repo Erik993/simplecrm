@@ -9,20 +9,25 @@
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item me-5">
-                    <a class="nav-link text-white sidebar-link" href="{{route('clients.index')}}">{{ __('navbar.clients') }}</a>
+                    <a class="nav-link text-white sidebar-link" href="{{route('clients.index')}}">{{ __('navbar.all_clients') }}</a>
                 </li>
                 <li class="nav-item me-5">
-                    <a class="nav-link text-white sidebar-link" href="{{route('orders.index')}}">{{ __('navbar.orders') }}</a>
+                    <a class="nav-link text-white sidebar-link" href="{{route('orders.index')}}">{{ __('navbar.all_orders') }}</a>
                 </li>
                 <li class="nav-item me-5">
-                    <a class="nav-link text-white sidebar-link" href="{{route('tasks.index')}}">{{ __('navbar.tasks') }}</a>
+                    <a class="nav-link text-white sidebar-link" href="{{route('tasks.index')}}">{{ __('navbar.all_tasks') }}</a>
+                </li>
+                <li class="nav-item me-5">
+                    <a class="nav-link text-white sidebar-link" href="{{route('notes.index')}}">{{ __('navbar.all_notes') }}</a>
                 </li>
             </ul>
 
+            {{--
             <form class="d-flex ms-3" role="search" method="GET" action="#">
                 <input class="form-control me-2" type="search" name="query" placeholder="{{ __('navbar.search') }}" aria-label="{{ __('navbar.search') }}">
                 <button class="btn btn-outline-success" type="submit">{{ __('navbar.search') }}</button>
             </form>
+            --}}
 
 
             <div class="ms-3">

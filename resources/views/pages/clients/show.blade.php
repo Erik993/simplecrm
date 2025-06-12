@@ -42,19 +42,16 @@
                         <div class="d-flex gap-2 mt-3">
                             <a href="{{ route('clients.index') }}" class="btn btn-secondary">Back to Clients</a>
 
-                            @can('edit', \App\Models\Client::class)
+                            @can('update', $client)
                             <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-primary">Edit</a>
                             @endcan
 
                             @can('delete', $client)
-                                {{-- You could use policies too, but for simplicity: --}}
-                                @if(auth()->user()->role === 'admin')
-                                    <form action="{{ route('clients.destroy', $client->id) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                    </form>
-                                @endif
+                                <form action="{{ route('clients.destroy', $client->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
                             @endcan
                         </div>
                     </div>
@@ -68,10 +65,10 @@
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body">
                                         <h6 class="card-title text-uppercase fw-bold">Note History</h6>
+
                                         @forelse ($client->notes as $note)
 
-                                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                                {{-- Note clickable card --}}
+                                            <div class="d-flex justify-content-between align-items-center mb-2" id="note-{{ $note->id }}">
                                                 <a href="{{ route('notes.show', $note->id) }}" class="note-hover text-decoration-none flex-grow-1">
                                                     <div class="card shadow-sm border-0 bg-light">
                                                         <div class="card-body py-2">
@@ -80,7 +77,15 @@
                                                         </div>
                                                     </div>
                                                 </a>
+
                                                 {{-- Delete button --}}
+                                                {{----btn for JS
+                                                <button class="btn btn-sm btn-danger delete-note-btn" data-id="{{ $note->id }}"
+                                                    data-url="{{ route('notes.destroy', $note->id) }}" onclick="return confirm('Are you sure?')">
+                                                    Delete
+                                                </button>--}}
+
+                                                {{--Not AJAX delete btn--}}
                                                 <form action="{{ route('notes.destroy', $note->id) }}" method="POST" class="ms-2">
                                                     @csrf
                                                     @method('DELETE')
@@ -89,6 +94,7 @@
                                                         Delete
                                                     </button>
                                                 </form>
+
                                             </div>
                                         @empty
                                             <p class="text-muted">No notes</p>
@@ -171,3 +177,5 @@
         </div>
     </div>
 @endsection
+
+

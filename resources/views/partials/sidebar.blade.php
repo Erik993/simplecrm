@@ -9,7 +9,7 @@
             <a class="nav-link text-white sidebar-link" href="#"> <i class="bi bi-list-check"></i> {{ __('sidebar.todo') }}</a>
         </li>
         <li class="nav-item mb-3">
-            <a class="nav-link text-white sidebar-link" href="#"> <i class="bi bi-people"></i> {{ __('sidebar.my_clients') }}</a>
+            <a class="nav-link text-white sidebar-link" href="{{route('clients.my')}}"> <i class="bi bi-people"></i> {{ __('sidebar.my_clients') }}</a>
         </li>
         <li class="nav-item mb-3">
             <a class="nav-link text-white sidebar-link" href="#"> <i class="bi bi-box-seam"></i> {{ __('sidebar.my_orders') }}</a>

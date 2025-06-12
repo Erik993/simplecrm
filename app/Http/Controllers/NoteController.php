@@ -99,18 +99,34 @@ class NoteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(Request $request, Note $note)
     {
         $note->delete();
 
         if ($request->has('client_id')) {
-            return redirect()
-                ->route('clients.show', $request->input('client_id'))
+            return redirect() ->route('clients.show', $request->input('client_id'))
                 ->with('success', 'Note deleted.');
         }
 
-        return redirect()
-            ->route('notes.index')
-            ->with('success', 'Note deleted!');
+        return redirect() -> route('notes.index') -> with('success', 'Note deleted!');
     }
+
+
+    //destroy with AJAX
+/*public function destroy(Request $request, Note $note)
+    {
+
+        $note->delete();
+        dd('Deleted');
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
+        if ($request->has('client_id')) {
+            return redirect()->route('clients.show', $request->input('client_id'))->with('success', 'Note deleted.');
+        }
+
+        return redirect()->route('clients.show', $note->client_id)->with('success', 'Note deleted.');
+    }*/
 }
